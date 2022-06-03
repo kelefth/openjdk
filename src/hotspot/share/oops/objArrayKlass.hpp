@@ -173,6 +173,8 @@ class ObjArrayKlass : public ArrayKlass {
   void print_value_on(outputStream* st) const;
 
   void oop_print_value_on(oop obj, outputStream* st);
+
+  void oop_dump(oop obj);
 #ifndef PRODUCT
   void oop_print_on      (oop obj, outputStream* st);
 #endif //PRODUCT

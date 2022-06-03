@@ -3390,6 +3390,35 @@ void InstanceKlass::oop_print_value_on(oop obj, outputStream* st) {
   }
 }
 
+void InstanceKlass::oop_dump(oop obj) {
+  // printf("TEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEST\n");
+
+  if (this == NULL) {
+      printf("NULL\n");
+  } else if (java_lang_String::is_instance(obj)) {
+    int len = java_lang_String::length(obj);
+    char* str = java_lang_String::as_utf8_string(obj, 0, len);
+    // Print name
+    printf("name = %s, ", str);
+    // Print address
+    printf(INTPTR_FORMAT"\n", p2i(obj));
+  } else {
+    // // Print class
+    // printf("class = %s, ", name()->as_C_string());
+    // // Print address
+    // printf(INTPTR_FORMAT"\n", p2i(obj));
+
+    // if (this == SystemDictionary::String_klass()
+    //     && java_lang_String::value(obj) != NULL) {
+    //       int len = java_lang_String::length(obj);
+    //       char* str = java_lang_String::as_utf8_string(obj, 0, len);
+    //       // Print name
+    //       printf(", name = %s\n", str);
+    // }
+  }
+
+}
+
 const char* InstanceKlass::internal_name() const {
   return external_name();
 }

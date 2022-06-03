@@ -62,6 +62,32 @@ void oopDesc::print_value() {
   print_value_on(tty);
 }
 
+void oopDesc::dump() {
+  oop obj = oop(this);
+  if (this == NULL) {
+    printf("NULL\n");
+  } else if (java_lang_String::is_instance(obj)) {
+    // print string values
+    typeArrayOop value  = java_lang_String::value_no_keepalive(obj);
+    if(value == NULL) printf("NULL\n");
+    else {
+      int length = java_lang_String::length(obj);
+      bool is_latin1 = java_lang_String::is_latin1(obj);
+
+      printf("\"");
+      for (int index = 0; index < length; index++) {
+        printf("%c", (!is_latin1) ?  value->char_at(index) :
+                              ((jchar) value->byte_at(index)) & 0xff );
+      }
+      printf("\", ");
+    }
+
+    printf(INTPTR_FORMAT"\n", p2i(obj));
+  } else {
+    klass()->oop_dump(obj);
+  }
+}
+
 char* oopDesc::print_value_string() {
   char buf[100];
   stringStream st(buf, sizeof(buf));

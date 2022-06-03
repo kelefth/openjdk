@@ -497,6 +497,17 @@ void ObjArrayKlass::oop_print_value_on(oop obj, outputStream* st) {
   obj->print_address_on(st);
 }
 
+void ObjArrayKlass::oop_dump(oop obj) {
+  assert(obj->is_objArray(), "must be objArray");
+  printf("a ");
+  printf("%s", internal_name());
+  
+  int len = objArrayOop(obj)->length();
+  printf("[%d] ", len);
+  // Print address
+  printf(INTPTR_FORMAT"\n", p2i(obj));
+}
+
 const char* ObjArrayKlass::internal_name() const {
   return external_name();
 }

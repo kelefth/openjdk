@@ -233,6 +233,9 @@ class oopDesc {
   void print_value();
   void print_address();
 
+  // dump
+  void dump();
+
   // return the print strings
   char* print_string();
   char* print_value_string();

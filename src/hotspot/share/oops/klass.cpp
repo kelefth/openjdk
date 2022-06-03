@@ -698,6 +698,13 @@ void Klass::oop_print_value_on(oop obj, outputStream* st) {
   obj->print_address_on(st);
 }
 
+void Klass::oop_dump(oop obj) {
+  // print title
+  ResourceMark rm;              // Cannot print in debug mode without this
+  // printf("%s\n", internal_name());
+  // obj->print_address_on(st);
+}
+
 #if INCLUDE_SERVICES
 // Size Statistics
 void Klass::collect_statistics(KlassSizeStats *sz) const {

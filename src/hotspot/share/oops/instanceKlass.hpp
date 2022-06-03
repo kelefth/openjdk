@@ -1353,6 +1353,8 @@ public:
 
   void oop_print_value_on(oop obj, outputStream* st);
 
+  void oop_dump(oop obj);
+
 #ifndef PRODUCT
   void oop_print_on      (oop obj, outputStream* st);
 

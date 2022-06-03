@@ -701,6 +701,8 @@ protected:
   virtual void oop_print_value_on(oop obj, outputStream* st);
   virtual void oop_print_on      (oop obj, outputStream* st);
 
+  virtual void oop_dump(oop obj);
+
   virtual const char* internal_name() const = 0;
 
   // Verification
